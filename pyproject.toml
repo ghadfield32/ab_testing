@@ -4,8 +4,8 @@ build-backend = "hatchling.build"
 
 [project]
 name = "ab_testing"
-version = "0.1.0"
-description = "A/B Testing Framework for Data Science Projects"
+version = "1.0.0"
+description = "Production-Ready A/B Testing Framework with Real-World Datasets"
 readme = "README.md"
 license = {text = "MIT"}
 classifiers = [
@@ -29,6 +29,7 @@ dependencies = [
     "duckdb>=0.8.0", # Fast SQL queries on data
     "python-dotenv>=1.0.0", # Load environment variables from .env file
     "pyspark>=4.1.0", # Big data processing framework
+    "scikit-uplift>=0.5.0", # Uplift modeling and Criteo dataset loading
     # Time series forecasting
     "statsforecast>=1.5.0", # Statistical forecasting methods
     "mlforecast>=0.10.0", # ML-based forecasting
@@ -58,6 +59,8 @@ dependencies = [
     "protobuf>=4.21,<7",
     "ipykernel>=6.0.0", # IPython kernel for Jupyter
     "sqlglot>=28.6.0",
+    "kaggle==1.8.3",
+    "kagglehub[pandas-datasets]==0.4.1",
 ]
 
 [project.optional-dependencies]
@@ -82,7 +85,7 @@ Repository = "https://github.com/RamiKrispin/ab_testing.git"
 Issues = "https://github.com/RamiKrispin/ab_testing/issues"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src"]
+packages = ["src/ab_testing"]
 
 [tool.black]
 line-length = 100
@@ -134,4 +137,8 @@ testpaths = ["tests"]
 python_files = ["test_*.py"]
 python_classes = ["Test*"]
 python_functions = ["test_*"]
-addopts = "-v --cov=. --cov-report=html --cov-report=term"
+addopts = "-v --cov=src/ab_testing --cov-report=html --cov-report=term-missing --cov-fail-under=50"
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    "integration: marks tests as integration tests",
+]
