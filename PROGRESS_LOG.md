@@ -600,3 +600,86 @@ primary_positive = effect_size > 0
 - Option A: Relax to alpha=0.001 (Booking.com style) - would still fail at p=0.0086
 - Option B: Accept as published data reality and document the borderline case
 - Option C: Investigate if this is a known issue with Cookie Cats dataset
+
+---
+
+## 2026-01-29 (Continued): Two-Stage SRM Gating & Production Polish
+
+### Completed ✅
+
+**1. Two-Stage SRM Gating Implementation**
+- Added Stage A (statistical: p < alpha) + Stage B (practical: deviation > threshold)
+- New parameters: `pp_threshold` (default 0.01 = 1pp), `count_threshold` (optional)
+- New return fields: `pp_deviation_control`, `max_pp_deviation`, `practical_significant`, `srm_severe`, `srm_warning`
+- Severity levels: `srm_severe` (both stages fail = hard gate), `srm_warning` (statistical only = proceed with caution)
+
+**2. Business Impact Reference Fix (marketing_pipeline.py:648)**
+- Fixed premature `results['business_impact']` access before it was created
+- Changed to: "(See Step 8 below for full revenue projections)"
+
+**3. Guardrail CI Display Improvements (cookie_cats_pipeline.py)**
+- Added 95% CI lower bound display for non-inferiority decisions
+- Added explanatory note: "Point estimate OK, but CI extends below tolerance"
+- Clarifies why -2.21% change vs -5% tolerance can still FAIL (CI-based testing)
+
+**4. Lazy Imports Fix (pipelines/__init__.py)**
+- Implemented `__getattr__` for deferred module imports
+- Eliminates RuntimeWarning when running `python -m ab_testing.pipelines.*`
+
+### Technical Details
+
+**Two-Stage SRM Logic**:
+```python
+# Stage A: Statistical significance
+statistical_srm = p_value < alpha
+
+# Stage B: Practical significance (either pp or count threshold)
+pp_deviation = abs(observed_proportion - expected_proportion)
+practical_significant = pp_deviation > pp_threshold
+
+# Combined severity
+srm_severe = statistical_srm and practical_significant  # Hard gate
+srm_warning = statistical_srm and not practical_significant  # Proceed with caution
+```
+
+**Cookie Cats Borderline Case**:
+- p=0.0086 (statistical) + 0.44pp deviation (below 1pp threshold)
+- Result: `srm_warning=True`, `srm_severe=False`
+- Pipeline correctly proceeds with caution (warning displayed, no hard gate)
+
+### Verification Results ✅
+
+**All 3 Pipelines Run Successfully**:
+- Cookie Cats: Decision=HOLD (borderline SRM handled correctly, guardrail CI-based failures explained)
+- Criteo: Decision=SHIP (27% variance reduction, X-Learner HTE, sequential testing)
+- Marketing: Decision=SHIP (35.69% lift, business impact correctly calculated in Step 8)
+
+**All 234 Tests Passing**:
+- No regressions from pipeline fixes
+- Coverage: 23% (expected - pipelines not covered by unit tests)
+
+### Files Modified
+
+**src/ab_testing/core/randomization.py**: Added two-stage SRM gating parameters and return fields
+**src/ab_testing/pipelines/criteo_pipeline.py**: Updated SRM to use two-stage with 15/85 baseline
+**src/ab_testing/pipelines/cookie_cats_pipeline.py**: Two-stage SRM, guardrail CI display improvements
+**src/ab_testing/pipelines/marketing_pipeline.py**: Fixed premature business_impact reference (line 648)
+**src/ab_testing/pipelines/__init__.py**: Lazy imports via `__getattr__`
+**tests/core/test_randomization.py**: Added 8 tests for `TestTwoStageSRMGating`
+
+### Key Technical Learnings
+
+1. **Two-Stage Gating**: Statistical significance alone isn't enough at scale - need practical significance too
+2. **CI-Based Non-Inferiority**: Point estimate can pass threshold while CI lower bound fails (correct behavior)
+3. **Lazy Imports**: `__getattr__` at module level allows deferred imports without RuntimeWarning
+4. **Ordering Matters**: Pipeline steps must not reference results from later steps
+
+### Session Status: COMPLETE ✅
+
+All production DS checklist items addressed:
+- [x] Business impact CI sign bug (fixed - line 648 reference ordering)
+- [x] Two-stage SRM gating (implemented with statistical + practical significance)
+- [x] RuntimeWarning fix (lazy imports via `__getattr__`)
+- [x] Guardrail CI display (shows lower bound and explains CI-based decisions)
+- [x] All pipelines verified working
+- [x] All 234 tests passing
