@@ -9,7 +9,7 @@ A **comprehensive, modular Python package** for A/B testing and experimentation,
 ## 🎯 What Makes This Different
 
 - **✅ Complete Implementation**: All major A/B testing techniques from fundamentals through cutting-edge methods
-- **✅ 2024-2025 Best Practices**: Guardrail metrics, novelty detection, instrumental variables, network effects
+- **✅ Best Practices**: Guardrail metrics, novelty detection, instrumental variables, network effects
 - **✅ Real-World Datasets**: Criteo Uplift (13.9M rows), Marketing A/B (588K rows), Cookie Cats (90K rows)
 - **✅ Production-Grade**: 13+ modules, 200+ test methods, 80%+ coverage, full type hints
 - **✅ Industry-Validated**: Techniques from Meta, Spotify, DoorDash, Statsig, Mixpanel
