@@ -6,6 +6,12 @@ A **comprehensive, modular Python package** for A/B testing and experimentation,
 [![Coverage](https://img.shields.io/badge/coverage-80%25+-brightgreen)]()
 [![Python](https://img.shields.io/badge/python-3.11%2B-blue)]()
 
+> **New here?** Check out [START_HERE.md](START_HERE.md) for a guided learning path based on your experience level.
+>
+> **Why these choices?** Read [DECISIONS.md](DECISIONS.md) to understand the design decisions behind this framework.
+
+---
+
 ## 🎯 What Makes This Different
 
 - **✅ Complete Implementation**: All major A/B testing techniques from fundamentals through cutting-edge methods
@@ -26,6 +32,10 @@ A **comprehensive, modular Python package** for A/B testing and experimentation,
 - [API Reference](#-api-reference)
 - [Verification Against Scope](#-project-scope-verification)
 - [Industry Best Practices](#-industry-best-practices)
+
+**Additional Guides:**
+- [START_HERE.md](START_HERE.md) - Quick learning guide with self-assessment
+- [DECISIONS.md](DECISIONS.md) - Why we made specific design choices
 
 ---
 
@@ -1845,9 +1855,14 @@ MIT License - see [LICENSE](LICENSE) file for details.
 
 ## 📧 Support
 
-- **Issues**: [GitHub Issues](https://github.com/YOUR_USERNAME/ab_testing/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/YOUR_USERNAME/ab_testing/discussions)
-- **Documentation**: See `docs/` folder for detailed guides
+- **Issues**: [GitHub Issues](https://github.com/ghadfield32/ab_testing/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/ghadfield32/ab_testing/discussions)
+
+**Documentation:**
+- [START_HERE.md](START_HERE.md) - Learning guide with experience-based paths
+- [DECISIONS.md](DECISIONS.md) - Design decisions and rationale
+- [LINKEDIN_POST.md](LINKEDIN_POST.md) - Share this project
+- [PROGRESS_LOG.md](PROGRESS_LOG.md) - Development timeline
 
 ---
 

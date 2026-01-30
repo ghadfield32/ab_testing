@@ -12,7 +12,6 @@ Modules:
 - advanced: Sequential testing, HTE, noncompliance analysis
 - diagnostics: Guardrails, novelty detection, A/A tests
 - decision: Ship/hold/abandon frameworks
-- reporting: Results formatting and visualization
 - data: Real-world dataset loaders
 
 Example Usage:
