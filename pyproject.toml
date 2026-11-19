@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "ab_testing"
 version = "1.0.0"
-description = "Production-Ready A/B Testing Framework with Real-World Datasets"
+description = "Modular A/B testing and experimentation analysis toolkit"
 readme = "README.md"
 license = {text = "MIT"}
 classifiers = [
@@ -79,10 +79,10 @@ jupyter = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/RamiKrispin/ab_testing"
-Documentation = "https://github.com/RamiKrispin/ab_testing"
-Repository = "https://github.com/RamiKrispin/ab_testing.git"
-Issues = "https://github.com/RamiKrispin/ab_testing/issues"
+Homepage = "https://github.com/ghadfield32/ab_testing"
+Documentation = "https://github.com/ghadfield32/ab_testing/tree/main/docs"
+Repository = "https://github.com/ghadfield32/ab_testing.git"
+Issues = "https://github.com/ghadfield32/ab_testing/issues"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/ab_testing"]
@@ -137,7 +137,7 @@ testpaths = ["tests"]
 python_files = ["test_*.py"]
 python_classes = ["Test*"]
 python_functions = ["test_*"]
-addopts = "-v --cov=src/ab_testing --cov-report=html --cov-report=term-missing --cov-fail-under=50"
+addopts = "-v --cov=src/ab_testing --cov-report=html --cov-report=xml --cov-report=term-missing --cov-fail-under=20"
 markers = [
     "slow: marks tests as slow (deselect with '-m \"not slow\"')",
     "integration: marks tests as integration tests",

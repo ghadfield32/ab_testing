@@ -1,24 +1,25 @@
-# A/B Testing Framework - Production-Ready Experimentation Toolkit
+# A/B Testing and Experimentation Toolkit
 
-A **comprehensive, modular Python package** for A/B testing and experimentation, featuring state-of-the-art statistical methods (2024-2025), real-world datasets, and production-grade code quality. Designed for data scientists, analysts, and engineers who want to master rigorous experimentation techniques.
+A **modular Python toolkit** for statistical experiment analysis and learning. It includes frequentist and Bayesian methods, power and sample-size utilities, randomization diagnostics, variance reduction, multiple-testing correction, sequential methods, guardrails, and examples using public datasets. This repository is an actively developed research and learning project; it is not a validated production experimentation platform.
 
-[![Tests](https://img.shields.io/badge/tests-passing-brightgreen)]()
-[![Coverage](https://img.shields.io/badge/coverage-80%25+-brightgreen)]()
+[![Tests](https://github.com/ghadfield32/ab_testing/actions/workflows/pytest.yml/badge.svg?branch=main)](https://github.com/ghadfield32/ab_testing/actions/workflows/pytest.yml)
 [![Python](https://img.shields.io/badge/python-3.11%2B-blue)]()
 
-> **New here?** Check out [START_HERE.md](START_HERE.md) for a guided learning path based on your experience level.
+**Verified baseline (November 19, 2026):** 234 tests passed on Python 3.11; statement coverage was 22.51%. Coverage is currently limited and does not justify an 80%+ claim.
+
+> **New here?** Check out [docs/START_HERE.md](docs/START_HERE.md) for a guided learning path based on your experience level.
 >
-> **Why these choices?** Read [DECISIONS.md](DECISIONS.md) to understand the design decisions behind this framework.
+> **Why these choices?** Read [docs/DECISIONS.md](docs/DECISIONS.md) to understand the design decisions behind this framework.
 
 ---
 
 ## 🎯 What Makes This Different
 
-- **✅ Complete Implementation**: All major A/B testing techniques from fundamentals through cutting-edge methods
-- **✅ Best Practices**: Guardrail metrics, novelty detection, instrumental variables, network effects
+- **✅ Broad Method Coverage**: Core and advanced statistical methods are organized in reusable modules
+- **✅ Diagnostics and Decision Support**: Guardrail metrics, novelty detection, noncompliance analysis, and documented network-interference guidance
 - **✅ Real-World Datasets**: Criteo Uplift (13.9M rows), Marketing A/B (588K rows), Cookie Cats (90K rows)
-- **✅ Production-Grade**: 13+ modules, 200+ test methods, 80%+ coverage, full type hints
-- **✅ Industry-Validated**: Techniques from Meta, Spotify, DoorDash, Statsig, Mixpanel
+- **✅ Automated Tests**: 234 test functions; 234 passed in the November 19, 2026 Python 3.11 run; measured statement coverage was 22.51%
+- **✅ Industry-Informed**: Methods and design references drawn from public material by Meta, Spotify, DoorDash, Statsig, and Mixpanel
 
 ---
 
@@ -34,8 +35,8 @@ A **comprehensive, modular Python package** for A/B testing and experimentation,
 - [Industry Best Practices](#-industry-best-practices)
 
 **Additional Guides:**
-- [START_HERE.md](START_HERE.md) - Quick learning guide with self-assessment
-- [DECISIONS.md](DECISIONS.md) - Why we made specific design choices
+- [docs/START_HERE.md](docs/START_HERE.md) - Quick learning guide with self-assessment
+- [docs/DECISIONS.md](docs/DECISIONS.md) - Why we made specific design choices
 
 ---
 
@@ -1715,10 +1716,10 @@ executive_summary(metric_name, baseline_value, lift, p_value, ci, annual_impact)
 
 **Production Quality**:
 - ✅ Modular package structure (13+ modules vs. monolithic script)
-- ✅ Comprehensive unit tests (200+ test methods, 80%+ coverage)
+- ✅ Automated unit tests (234 test functions; 234 passed in the November 19, 2026 Python 3.11 run; 22.51% statement coverage)
 - ✅ Real-world datasets (Criteo, Marketing A/B, Cookie Cats)
 - ✅ Full docstrings and type hints
-- ✅ CI/CD ready (pytest + coverage)
+- ✅ GitHub Actions test workflow for Python 3.11, 3.12, and 3.13 (runs on pushes and pull requests after this change is merged)
 
 #### 📋 DOCUMENTED (Conceptual Coverage)
 
@@ -1735,9 +1736,9 @@ executive_summary(metric_name, baseline_value, lift, p_value, ci, annual_impact)
 - ❌ Full cluster experiment implementation (requires different data structure)
 - ❌ Advanced Bayesian methods (MCMC, PyMC3 - keeping it lightweight)
 
-### Summary: 95%+ Complete
+### Implementation Scope and Limitations
 
-We have implemented **all core techniques** from the PDF plus the **2024-2025 best practices** that were emphasized as differentiators. The remaining 5% represents advanced topics that were mentioned conceptually but not required for core learning.
+The repository contains a broad set of implemented statistical modules and worked examples. The test suite does not yet cover all modules: the November 19, 2026 baseline measured 22.51% statement coverage, and the end-to-end pipeline runners have substantial untested code. Treat feature availability and test coverage separately; do not use this project as a production service without additional validation, operational controls, and broader tests.
 
 **Key Differentiators Achieved**:
 1. ✅ Instrumental Variables for noncompliance (rare in interview projects)
@@ -1807,9 +1808,9 @@ uv run pytest -n auto
 ### Learning Materials
 - **Fundamentals**: [tests/core/](tests/core/) - See test files for usage examples
 - **Advanced**: [tests/advanced/](tests/advanced/) - Complex scenario demonstrations
-- **Notebooks**: Coming in Phase 2 - Interactive Jupyter labs
+- **Notebooks**: Four example notebooks are already available in `notebooks/` (Cookie Cats, Criteo, Marketing A/B, and an interview guide)
 
-### Code Quality
+### Developer Checks
 
 ```bash
 # Linting
@@ -1859,10 +1860,10 @@ MIT License - see [LICENSE](LICENSE) file for details.
 - **Discussions**: [GitHub Discussions](https://github.com/ghadfield32/ab_testing/discussions)
 
 **Documentation:**
-- [START_HERE.md](START_HERE.md) - Learning guide with experience-based paths
-- [DECISIONS.md](DECISIONS.md) - Design decisions and rationale
-- [LINKEDIN_POST.md](LINKEDIN_POST.md) - Share this project
-- [PROGRESS_LOG.md](PROGRESS_LOG.md) - Development timeline
+- [docs/START_HERE.md](docs/START_HERE.md) - Learning guide with experience-based paths
+- [docs/DECISIONS.md](docs/DECISIONS.md) - Design decisions and rationale
+- [docs/LINKEDIN_POST.md](docs/LINKEDIN_POST.md) - Share this project
+- [docs/PROGRESS_LOG.md](docs/PROGRESS_LOG.md) - Development timeline
 
 ---
 
@@ -1894,6 +1895,6 @@ MIT License - see [LICENSE](LICENSE) file for details.
 
 ---
 
-**Last Updated**: January 2026
+**Last Updated**: November 19, 2026
 **Version**: 1.0.0
-**Status**: ✅ Production Ready - Week 3-4 Complete
+**Status**: Alpha / learning and research toolkit; not validated as a production experimentation platform.
