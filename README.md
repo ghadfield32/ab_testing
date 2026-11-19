@@ -1860,10 +1860,10 @@ MIT License - see [LICENSE](LICENSE) file for details.
 - **Discussions**: [GitHub Discussions](https://github.com/ghadfield32/ab_testing/discussions)
 
 **Documentation:**
-- [START_HERE.md](START_HERE.md) - Learning guide with experience-based paths
-- [DECISIONS.md](DECISIONS.md) - Design decisions and rationale
-- [LINKEDIN_POST.md](LINKEDIN_POST.md) - Share this project
-- [PROGRESS_LOG.md](PROGRESS_LOG.md) - Development timeline
+- [docs/START_HERE.md](docs/START_HERE.md) - Learning guide with experience-based paths
+- [docs/DECISIONS.md](docs/DECISIONS.md) - Design decisions and rationale
+- [docs/LINKEDIN_POST.md](docs/LINKEDIN_POST.md) - Share this project
+- [docs/PROGRESS_LOG.md](docs/PROGRESS_LOG.md) - Development timeline
 
 ---
 
