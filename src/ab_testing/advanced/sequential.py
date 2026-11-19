@@ -563,7 +563,8 @@ if __name__ == "__main__":
     print(f"Standard z-critical (no correction): {comparison['standard_z']:.4f}")
     print()
 
-    print(f"{'Look':>6} {'Info %':>8} {'O\'Brien-Fleming':>18} {'Pocock':>12}")
+    obf_label = "O'Brien-Fleming"
+    print(f"{'Look':>6} {'Info %':>8} {obf_label:>18} {'Pocock':>12}")
     print("-" * 50)
 
     for row in comparison['boundaries_table']:
