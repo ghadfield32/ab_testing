@@ -3,7 +3,11 @@ name: Tests and coverage
 on:
   push:
     branches:
+      - main
       - qa/pytest-baseline-2026-11-19
+  pull_request:
+    branches:
+      - main
   workflow_dispatch:
 
 permissions:
@@ -11,21 +15,24 @@ permissions:
 
 jobs:
   test:
-    name: pytest (Python 3.11)
+    name: pytest (Python ${{ matrix.python-version }})
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12", "3.13"]
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
-          cache: "pip"
+          python-version: ${{ matrix.python-version }}
       - name: Install test dependencies
         run: |
           python -m pip install --upgrade pip
           python -m pip install numpy pandas scipy statsmodels scikit-learn pytest pytest-cov
-      - name: Run tests with configured coverage threshold
+      - name: Run tests with coverage
         env:
           PYTHONPATH: src
         run: python -m pytest
@@ -33,6 +40,8 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: pytest-coverage
-          path: coverage.xml
+          name: pytest-coverage-python-${{ matrix.python-version }}
+          path: |
+            coverage.xml
+            htmlcov/
           if-no-files-found: ignore
